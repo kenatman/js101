@@ -1,0 +1,23 @@
+body {
+  background-color: lightsalmon;
+}
+
+.target__text {
+  color: white;
+  font-weight: 600;
+}
+
+.line {
+  background-color: white;
+  position: absolute;
+}
+
+.vertical {
+  width: 2px;
+  height: 100%;
+}
+
+.horizontal {
+  width: 100%;
+  height: 2px;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coorinates</title>
+  </head>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: black;
+      margin: 10px;
+    }
+    .div__click {
+      background-color: cadetblue;
+    }
+    .nav {
+      display: flex;
+      position: fixed;
+      right: 0;
+      top: 0;
+    }
+
+    .nav button {
+      margin-right: 10px;
+    }
+  </style>
+  <script src="coordinates.js" defer></script>
+  <body>
+    <nav class="nav">
+      <button class="by">Scroll by 100px(y)</button>
+      <button class="to">Scroll to 100px(y)</button>
+      <button class="special">Scroll into special</button>
+    </nav>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="div__click"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </body>
+</html>
