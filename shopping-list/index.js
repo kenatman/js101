@@ -8,6 +8,18 @@ function saveInStorage() {
   localStorage.setItem(`items`, JSON.stringify(toBuy));
 }
 
+function deleteItem(e) {
+  const btn = e.target;
+  const li = btn.parentNode;
+
+  items.removeChild(li);
+  const newArray = toBuy.filter((item) => {
+    return item.id !== parseInt(li.id, 10);
+  });
+  toBuy = [...newArray];
+  saveInStorage();
+}
+
 function displayItems(item) {
   const li = document.createElement(`li`);
   const itemName = document.createElement(`span`);
@@ -17,6 +29,8 @@ function displayItems(item) {
   itemName.textContent = item;
   delBtn.textContent = `❌`;
   li.id = id;
+
+  delBtn.addEventListener("click", deleteItem);
 
   items.appendChild(li);
   li.appendChild(itemName);
