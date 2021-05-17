@@ -34,8 +34,14 @@ function createItem(text) {
   const delBtn = document.createElement(`button`);
   delBtn.setAttribute(`class`, `item__delete`);
   delBtn.innerHTML = ` <i class="fas fa-trash-alt"></i>`;
-  delBtn.addEventListener("click", () => {
-    items.removeChild(itemRow);
+  // delBtn.addEventListener("click", () => {
+  //   items.removeChild(itemRow);
+  // });
+
+  items.addEventListener("click", (e) => {
+    if (e.target.tagName == `I`) {
+      items.removeChild(e.target.parentNode.parentNode.parentNode);
+    }
   });
 
   const itemDivider = document.createElement(`div`);
