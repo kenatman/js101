@@ -20,38 +20,20 @@ function onAdd() {
   input.focus();
 }
 
+let id = 0;
+
 function createItem(text) {
   const itemRow = document.createElement(`li`);
   itemRow.setAttribute(`class`, `item__row`);
+  itemRow.setAttribute(`data-id`, id);
 
-  const item = document.createElement(`div`);
-  item.setAttribute(`class`, `item`);
-
-  const itemName = document.createElement(`span`);
-  itemName.setAttribute(`class`, `item__name`);
-  itemName.innerText = text;
-
-  const delBtn = document.createElement(`button`);
-  delBtn.setAttribute(`class`, `item__delete`);
-  delBtn.innerHTML = ` <i class="fas fa-trash-alt"></i>`;
-  // delBtn.addEventListener("click", () => {
-  //   items.removeChild(itemRow);
-  // });
-
-  items.addEventListener("click", (e) => {
-    if (e.target.tagName == `I`) {
-      items.removeChild(e.target.parentNode.parentNode.parentNode);
-    }
-  });
-
-  const itemDivider = document.createElement(`div`);
-  itemDivider.setAttribute(`class`, `item__divider`);
-
-  itemRow.appendChild(item);
-  itemRow.appendChild(itemDivider);
-  item.appendChild(itemName);
-  item.appendChild(delBtn);
-
+  itemRow.innerHTML = `<div class="item">
+          <span class="item__name">${text}</span>
+          <button class="item__delete"><i class="fas fa-trash-alt" data-id=${id}></i></button>
+          </div>
+        <div class="item__divider"></div>
+  `;
+  id++;
   return itemRow;
 }
 
@@ -62,5 +44,13 @@ addBtn.addEventListener("click", () => {
 input.addEventListener("keypress", (event) => {
   if (event.key === `Enter`) {
     onAdd();
+  }
+});
+
+items.addEventListener("click", (e) => {
+  const { id } = e.target.dataset;
+  if (id) {
+    const toBeDeleted = document.querySelector(`.item__row[data-id="${id}"]`);
+    toBeDeleted.remove();
   }
 });
