@@ -1,3 +1,4 @@
+//DOM
 const playBtn = document.querySelector(`.playBtn`);
 const timer = document.querySelector(`.timer`);
 const counter = document.querySelector(`.counter`);
@@ -8,10 +9,19 @@ const resultTitle = document.querySelector(`.resultContainer__title`);
 const carrots = document.querySelectorAll(`.carrot`);
 const bugs = document.querySelectorAll(`.bug`);
 
+//Audio
+const bg = new Audio(`./sound/bg.mp3`);
+const alert = new Audio(`./sound/alert.wav`);
+const bugPull = new Audio(`./sound/bug_pull.mp3`);
+const carrotPull = new Audio(`./sound/carrot_pull.mp3`);
+const gameWin = new Audio(`./sound/game_win.mp3`);
+
 let metaTime;
 let timeLeft = 10;
 
 function gameOver() {
+  bg.pause();
+  alert.play();
   clearInterval(metaTime);
   resultContainer.style.visibility = `initial`;
 }
@@ -40,6 +50,7 @@ function positionCarrots() {
 }
 
 function startGame() {
+  bg.play();
   playBtn.innerText = `◼️`;
   playBtn.removeEventListener("click", startGame);
   playBtn.addEventListener("click", gameOver);
@@ -57,6 +68,7 @@ function countCarrot() {
   const count = field.childElementCount - 7;
   counter.innerText = count;
   if (count === 0) {
+    gameWin.play();
     resultTitle.innerText = `YOU WIN!!!`;
     gameOver();
   }
@@ -67,6 +79,7 @@ function clickCarrot(e) {
   if (id === `carrot`) {
     const li = e.target.parentNode;
     li.remove();
+    carrotPull.play();
     countCarrot();
   }
 }
@@ -74,6 +87,7 @@ function clickCarrot(e) {
 function clickBug(e) {
   const { id } = e.target.dataset;
   if (id === `bug`) {
+    bugPull.play();
     gameOver();
   }
 }
