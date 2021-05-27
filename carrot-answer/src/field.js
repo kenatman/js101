@@ -15,7 +15,7 @@ export default class Field {
     // 클래스 안의 함수를 콜백으로 전달할 때는 전달되는 함수의 클래스 정보가 무시됨. 따라서 바인드 처리를 해야하는데
     // 1. function.bind(this)
     // 2. 전달되는 함수를 () => {}  expression 형태로 하면 자동으로 바인딩 됨.
-  
+  }
 
   setClickListener(onItemClick) {
     this.onItemClick = onItemClick;
