@@ -1,7 +1,7 @@
 `use strict`;
 
 import PopUp from "./popup.js";
-import GameBuilder from "./game.js";
+import { GameBuilder, Reason } from "./game.js";
 
 const game = new GameBuilder()
   .withGameDuration(3)
@@ -19,13 +19,13 @@ game.setGameListener((cb) => {
   console.log(cb);
   let message;
   switch (cb) {
-    case `cancel`:
+    case Reason.cancel:
       message = `Replay❓`;
       break;
-    case `win`:
+    case Reason.win:
       message = `You Win 🎉`;
       break;
-    case `lose`:
+    case Reason.lose:
       message = `You Lose 💩`;
       break;
     default:
